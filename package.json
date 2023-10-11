@@ -1,0 +1,49 @@
+{
+  "name": "cloudsql-mysql",
+  "description": "Node.js MySQL sample for Cloud SQL",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": "Google Inc.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoogleCloudPlatform/nodejs-docs-samples.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "dev": "nodemon server/server.js",
+    "start": "node server/server.js",
+    "system-test": "c8 mocha -p -j 2 test/server.test.js --timeout=60000 --exit",
+    "system-test-unix": "c8 mocha -p -j 2 test/server-unix.test.js --timeout=60000 --exit",
+    "test": "npm run system-test && npm run system-test-unix",
+    "cloud-sql-proxy": "cloud_sql_proxy -instances=vbreddyblog:us-central1:vbreddy-sql-inc=tcp:3306",
+    "gcloud:sql": "gcloud sql connect --project vbreddyblog  vbreddy-sql-inc --user=vbreddy-api-user",
+    "gcloud:build": "gcloud builds submit --tag gcr.io/vbreddyblog/cloud-api",
+    "gcloud:run": "gcloud run deploy cloud-api --image gcr.io/vbreddyblog/run-sql --add-cloudsql-instances vbreddyblog:us-central1:vbreddy-sql-inc --set-env-vars INSTANCE_UNIX_SOCKET='/cloudsql/vbreddyblog:us-central1:vbreddy-sql-inc' --set-env-vars INSTANCE_CONNECTION_NAME='vbreddyblog:us-central1:vbreddy-sql-inc' --set-env-vars DB_NAME='vbreddy-api-db' --set-env-vars DB_USER='vbreddy-api-user' --set-env-vars DB_PASS='vbreddy-api-pwd'",
+    "docker:build": "docker build -t gcr.io/vbreddyblog/vbreddy-cloud-api vbreddy-cloud-api",
+    "docker:push": "docker push gcr.io/vbreddyblog/vbreddy-cloud-api",
+    "docker:run": "gcloud run deploy vbreddy-cloud-api --project=vbreddyblog --platform=managed --region=us-central1 --image=gcr.io/vbreddyblog/vbreddy-cloud-api --allow-unauthenticated --set-env-vars INSTANCE_UNIX_SOCKET='/cloudsql/vbreddyblog:us-central1:vbreddy-sql-inc' --set-env-vars INSTANCE_CONNECTION_NAME='vbreddyblog:us-central1:vbreddy-sql-inc' --set-env-vars DB_NAME='vbreddy-api-db' --set-env-vars DB_USER='vbreddy-api-user' --set-env-vars DB_PASS='vbreddy-api-pwd'"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.0.0",
+    "@google-cloud/logging-winston": "^6.0.0",
+    "@google-cloud/secret-manager": "^5.0.0",
+    "@graphql-tools/schema": "^10.0.0",
+    "@graphql-tools/stitch": "^9.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.3.0",
+    "promise-mysql": "^5.0.0",
+    "pug": "^3.0.0",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "c8": "^8.0.0",
+    "mocha": "^10.0.0",
+    "nodemon": "^3.0.1",
+    "supertest": "^6.0.0"
+  }
+}
