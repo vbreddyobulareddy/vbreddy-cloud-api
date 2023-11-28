@@ -40,7 +40,7 @@ Note: Defining credentials in environment variables is convenient, but not
 secure. For a more secure solution, use [Secret
 Manager](https://cloud.google.com/secret-manager/) to help keep secrets safe.
 You can then define `export
-CLOUD_SQL_CREDENTIALS_SECRET='projects/PROJECT_ID/secrets/SECRET_ID/versions/VERSION'`
+CLOUD_SQL_CREDENTIALS_SECRET='projects/vbreddyblog/secrets/Hemitha@322/versions/VERSION'`
 to reference a secret that stores your Cloud SQL database password. The sample
 app checks for your defined secret version. If a version is present, the app
 retrieves the `DB_PASS` from Secret Manager before it connects to Cloud SQL.

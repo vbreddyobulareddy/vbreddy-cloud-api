@@ -16,6 +16,23 @@ const ensureSchema = async (pool) => {
       ( vote_id SERIAL NOT NULL, time_cast timestamp NOT NULL,
       candidate CHAR(6) NOT NULL, PRIMARY KEY (vote_id) );`
   );
+  await pool.query(
+    ` CREATE TABLE IF NOT EXISTS Connection (
+      id int NOT NULL AUTO_INCREMENT,
+      name varchar(255) NOT NULL,
+      email varchar(255),
+      mobile varchar(255),
+      PRIMARY KEY (id)
+    );`
+  );
+  await pool.query(
+    ` CREATE TABLE IF NOT EXISTS Replies (
+      id int NOT NULL AUTO_INCREMENT,
+      connectionId int,
+      comment text NOT NULL,
+      PRIMARY KEY (id)
+    );`
+  );
   console.log("Ensured that table 'votes' exists");
 };
 const createPool = async () => {
@@ -68,6 +85,7 @@ module.exports = {
         connectionPoolStack.push(pool);
       } catch (err) {
         logger.error(err);
+        console.log('--==getConnection ', err);
       }
     }
     return connectionPoolStack.pop();
