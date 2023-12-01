@@ -17,6 +17,7 @@
     "system-test": "c8 mocha -p -j 2 test/server.test.js --timeout=60000 --exit",
     "system-test-unix": "c8 mocha -p -j 2 test/server-unix.test.js --timeout=60000 --exit",
     "test": "npm run system-test && npm run system-test-unix",
+    "cloud-sql-proxy:run": "/Users/abcd/cloud-sql-proxy vbreddyblog:us-central1:vbreddy-sql-inc",
     "cloud-sql-proxy": "cloud_sql_proxy -instances=vbreddyblog:us-central1:vbreddy-sql-inc=tcp:3306",
     "gcloud:sqlDescribe": "gcloud sql instances describe vbreddy-sql-inc --project=vbreddyblog",
     "gcloud:sql": "gcloud sql connect --project vbreddyblog  vbreddy-sql-inc --user=vbreddy-api-user",

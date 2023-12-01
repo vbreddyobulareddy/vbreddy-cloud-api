@@ -25,6 +25,10 @@ module.exports = {
         `SELECT * FROM Connection WHERE id = ${newConnect.insertId}`
       );
       console.log("---=addNewConnect<:-4-:>newRow", newRow);
+      await connection.query("INSERT INTO Replies SET ?", {
+        connectionId: newRow.id,
+        comment: payload.comment,
+      });
       return newRow;
     } catch (e) {
       console.log("--==addNewConnect ", e);

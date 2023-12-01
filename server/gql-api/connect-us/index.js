@@ -23,7 +23,7 @@ module.exports = makeExecutableSchema({
     }
 
     type Mutation {
-      addNewConnect(name: String!, email: String!, mobile: String): Connection!
+      addNewConnect(name: String!, email: String!, mobile: String, comment: String!): Connection!
       addReply(connectionId: Int!, comment: String!): Replies!
     }
   `,
@@ -51,17 +51,28 @@ module.exports = makeExecutableSchema({
 /***
  * 
  * 
- mutation addNewConnect($name:String!, $email: String!, $mobile: String) {
-  addNewConnect(name: $name, email:$email, mobile: $mobile) {
-    id
-    name
+  mutation addNewConnect(
+    $name:String!, 
+    $email: String!, 
+    $mobile: String, 
+    $comment: String
+  ) {
+    addNewConnect(
+      name: $name, 
+      email:$email, 
+      mobile: $mobile, 
+      comment: $comment
+  ) {
+      id
+      name
+    }
   }
-}
 ****
 {
   "name": "Veera",
-  "email":"obularedy.veera@gmail.com",
-  "mobile": "8105555344"
+  "email": "obularedy.veera@gmail.com",
+  "mobile": "8105555344",
+  "comment": "Hello Veera this is new comment"
 }
 *
 *
