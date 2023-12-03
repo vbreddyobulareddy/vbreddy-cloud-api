@@ -42,6 +42,10 @@ app.use(
     graphiql: true,
   })
 );
+app.use("/api/gmail/send", (req, res) => {
+  res.set("Content-Type", "text/html");
+  res.send('Hello')
+})
 app.use("/", (req, res) => {
   res.set("Content-Type", "text/html");
   res.sendFile(__dirname + "/views/index.html");
