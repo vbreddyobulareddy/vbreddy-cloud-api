@@ -1,6 +1,7 @@
 const { SecretManagerServiceClient } = require("@google-cloud/secret-manager");
 const logger = require("./logger.js");
 const createTcpPool = require('./cloud-sql-serve/connect-tcp.js');
+const createUnixSocketPool = require('./cloud-sql-serve/connect-unix.js');
 
 const client = new SecretManagerServiceClient();
 async function accessSecretVersion(secretName) {
