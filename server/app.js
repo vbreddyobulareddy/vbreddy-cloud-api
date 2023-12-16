@@ -2,22 +2,13 @@ const express = require("express");
 const graphqlYoga = require("graphql-yoga");
 const helmet = require("helmet");
 
+const gqlApi = require("./gql-api/index.js");
+
 module.exports = {
   graphQLServerInstance: (app) => {
-    const { createSchema, createYoga } = graphqlYoga;
+    const { createYoga } = graphqlYoga;
     const graphQLServer = createYoga({
-      schema: createSchema({
-        typeDefs: /* GraphQL */ `
-          type Query {
-            hello: String
-          }
-        `,
-        resolvers: {
-          Query: {
-            hello: () => "world",
-          },
-        },
-      }),
+      schema: gqlApi,
       logging: false,
     });
 

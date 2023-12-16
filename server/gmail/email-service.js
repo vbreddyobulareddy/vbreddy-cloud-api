@@ -55,7 +55,8 @@ async function dropMyResumeViaGmailService(
         earliest convenience for an interview.</p>
         <p style="font-family: Verdana,Geneva,sans-serif">
         Warm Regards, <br/>
-        VBReddy <br />
+        Veera Bhargava Reddy Obulareddy (VBReddy) <br />
+        +1 404 448 1224 <br/>
         vbreddy.obulareddy@gmail.com <br/>
         --- <br/>
         <strong>This is an auto generated email from <a href="https://vbreddy.life">vbreddy.life</a></strong>
