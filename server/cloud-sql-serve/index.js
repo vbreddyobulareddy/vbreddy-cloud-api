@@ -3,52 +3,13 @@ const createUnixSocketPool = require("./connect-unix.js");
 const logger = require("./../logger.js");
 
 const { SecretManagerServiceClient } = require("@google-cloud/secret-manager");
+const { ensureSchema } = require("./ensure-schema.js");
 const connectionPoolStack = [];
 const client = new SecretManagerServiceClient();
 async function accessSecretVersion(secretName) {
   const [version] = await client.accessSecretVersion({ name: secretName });
   return version.payload.data;
 }
-
-const ensureSchema = async (pool) => {
-  await pool.query(
-    `CREATE TABLE IF NOT EXISTS votes ( 
-      vote_id SERIAL NOT NULL, 
-      time_cast timestamp NOT NULL,
-      candidate CHAR(6) NOT NULL, 
-      PRIMARY KEY (vote_id) 
-    );`
-  );
-  await pool.query(
-    ` CREATE TABLE IF NOT EXISTS Connection (
-      id int NOT NULL AUTO_INCREMENT,
-      name varchar(255) NOT NULL,
-      email varchar(255),
-      mobile varchar(255),
-      PRIMARY KEY (id)
-    );`
-  );
-  await pool.query(
-    ` CREATE TABLE IF NOT EXISTS Replies (
-      id int NOT NULL AUTO_INCREMENT,
-      connectionId int,
-      comment text NOT NULL,
-      PRIMARY KEY (id)
-    );`
-  );
-  await pool.query(
-    ` CREATE TABLE IF NOT EXISTS ResumeContacts (
-      id int NOT NULL AUTO_INCREMENT,
-      email varchar(255) NOT NULL,
-      status varchar(255) NOT NULL,
-      type varchar(255),
-      createdDate timestamp NOT NULL,
-      modifiedDate timestamp NOT NULL,
-      PRIMARY KEY (id)
-    );`
-  );
-  console.log("Ensured that table 'votes' exists");
-};
 const createPool = async () => {
   const config = {
     connectionLimit: 5,

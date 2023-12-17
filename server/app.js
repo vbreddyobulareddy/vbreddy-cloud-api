@@ -37,7 +37,7 @@ module.exports = {
 
     // Rest of the routes
     app.get("/", (req, res) => {
-      res.send("Hello World!");
+      res.redirect('https://vbreddy.life');
     });
 
     return graphQLServer.graphqlEndpoint;
