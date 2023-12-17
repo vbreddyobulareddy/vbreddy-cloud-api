@@ -7,8 +7,6 @@ module.exports = {
     const contacts = await connection.query(
       "SELECT id, email, status, type FROM ResumeContacts ORDER BY email"
     );
-    console.log("--== Connection is ready ", contacts);
-
     return [
       {
         id: 1,
@@ -28,7 +26,6 @@ module.exports = {
       modifiedDate: new Date(),
     });
 
-    console.log("---=addNewConnect<:-4-:>newReply", newReply);
     const [newRow] = await connection.query(
       `SELECT * FROM ResumeContacts WHERE id = ${newReply.insertId}`
     );
