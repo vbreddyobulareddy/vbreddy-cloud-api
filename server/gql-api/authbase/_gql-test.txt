@@ -1,0 +1,50 @@
+query {
+  getOrgUnitTypes {
+    id
+    name
+  }
+}
+
+mutation signUpTravelBookTaker(
+        $orgUnitName: String!,
+        $orgUnitEmail: String!,
+        $orgUnitMobile: String!,
+        $orgUnitAddress: String!,
+        $orgUnitTypeId: Int!,
+        $primPersonName: String!,
+        $primPersonEmail: String!,
+        $primPersonMobile: String!,
+        $primPersonUserName: String!,
+        $primPersonPassword: String!,
+        $primPersonAddress: String!
+    ) {
+  signUpTravelBookTaker(
+    orgUnitName: $orgUnitName,
+    orgUnitEmail: $orgUnitEmail, 
+    orgUnitMobile: $orgUnitMobile,
+    orgUnitAddress: $orgUnitAddress,
+    orgUnitTypeId: $orgUnitTypeId,
+    primPersonName: $primPersonName,
+    primPersonEmail: $primPersonEmail,
+    primPersonMobile: $primPersonMobile,
+    primPersonUserName: $primPersonUserName,
+    primPersonPassword: $primPersonPassword,
+    primPersonAddress: $primPersonAddress
+  ) {
+    id
+  }
+}
+
+{
+  "orgUnitName": "OVR Travels",
+"orgUnitEmail": "ovrtravels@gmail.com",
+"orgUnitMobile": "+918105555322",
+"orgUnitAddress": "Flat-201 Infinite Origin, Subh Enclave, Haralur Road, Bangalore 560106",
+"orgUnitTypeId": 101,
+"primPersonName": "vbReddy",
+"primPersonEmail": "vbreddy.obulareddy@gmail.com",
+"primPersonMobile": "+918105555322",
+"primPersonUserName": "vbReddy",
+"primPersonPassword": "Veera@123",
+"primPersonAddress": "Flat-201 Infinite Origin, Subh Enclave, Haralur Road, Bangalore 560106"
+}

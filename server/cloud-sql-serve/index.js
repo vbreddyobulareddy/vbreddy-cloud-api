@@ -40,10 +40,8 @@ const createPool = async () => {
 };
 
 const createPoolAndEnsureSchema = async () => {
-  console.log("--==createPoolAndEnsureSchema ", process.env);
   return await createPool()
     .then(async (pool) => {
-      await ensureSchema(pool);
       return pool;
     })
     .catch((err) => {

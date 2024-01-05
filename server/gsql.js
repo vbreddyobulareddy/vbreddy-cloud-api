@@ -1,7 +1,7 @@
 const { SecretManagerServiceClient } = require("@google-cloud/secret-manager");
 const logger = require("./logger.js");
-const createTcpPool = require('./cloud-sql-serve/connect-tcp.js');
-const createUnixSocketPool = require('./cloud-sql-serve/connect-unix.js');
+const createTcpPool = require("./cloud-sql-serve/connect-tcp.js");
+const createUnixSocketPool = require("./cloud-sql-serve/connect-unix.js");
 
 const client = new SecretManagerServiceClient();
 async function accessSecretVersion(secretName) {
@@ -37,19 +37,10 @@ const createPool = async (env) => {
     throw "Set either the `INSTANCE_HOST` or `INSTANCE_UNIX_SOCKET` environment variable.";
   }
 };
-const ensureSchema = async (pool) => {
-  await pool.query(
-    `CREATE TABLE IF NOT EXISTS votes
-      ( vote_id SERIAL NOT NULL, time_cast timestamp NOT NULL,
-      candidate CHAR(6) NOT NULL, PRIMARY KEY (vote_id) );`
-  );
-  console.log("Ensured that table 'votes' exists");
-};
 module.exports = {
   createPoolAndEnsureSchema: async (env) => {
     return await createPool(env)
       .then(async (pool) => {
-        await ensureSchema(pool);
         return pool;
       })
       .catch((err) => {
