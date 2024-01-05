@@ -48,3 +48,16 @@ mutation signUpTravelBookTaker(
 "primPersonPassword": "Veera@123",
 "primPersonAddress": "Flat-201 Infinite Origin, Subh Enclave, Haralur Road, Bangalore 560106"
 }
+
+mutation getToken($userName: String!, $password: String!){
+  getToken(userName: $userName, password: $password) {
+    id
+    token
+    message
+  }
+}
+
+{
+  "userName": "vbReddy",
+  "password": "Veera@123"
+}

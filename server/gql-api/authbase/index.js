@@ -1,5 +1,5 @@
 const { makeExecutableSchema } = require("@graphql-tools/schema");
-const authbaseDao = require("./controller.js");
+const authbaseController = require("./controller.js");
 
 module.exports = makeExecutableSchema({
   typeDefs: /* GraphQL */ `
@@ -33,12 +33,18 @@ module.exports = makeExecutableSchema({
       isActive: Boolean
     }
 
+    type Token {
+      id: Int
+      token: String
+      message: String
+    }
+
     type Query {
-      getToken(userName: String!, password: String!): OrgUnitPerson!
       getOrgUnitTypes: CodeValue!
     }
 
     type Mutation {
+      getToken(userName: String!, password: String!): Token!
       signUpTravelBookTaker(
         orgUnitName: String!
         orgUnitEmail: String!
@@ -56,16 +62,16 @@ module.exports = makeExecutableSchema({
   `,
   resolvers: {
     Query: {
-      getToken(_, payload) {
-        return authbaseDao.getToken(payload);
-      },
       getOrgUnitTypes() {
-        return authbaseDao.getOrgUnitTypes();
+        return authbaseController.getOrgUnitTypes();
       },
     },
     Mutation: {
+      getToken(_, payload) {
+        return authbaseController.getToken(payload);
+      },
       signUpTravelBookTaker(_, payload) {
-        return authbaseDao.signUpTravelBookTaker(payload);
+        return authbaseController.signUpTravelBookTaker(payload);
       },
     },
   },

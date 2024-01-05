@@ -41,6 +41,7 @@
     "graphql": "^15.3.0",
     "graphql-yoga": "^5.0.2",
     "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
     "nodemailer": "^6.9.7",
     "promise-mysql": "^5.0.0",
     "pug": "^3.0.0",
