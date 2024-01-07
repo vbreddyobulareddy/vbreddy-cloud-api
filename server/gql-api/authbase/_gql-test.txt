@@ -36,7 +36,7 @@ mutation signUpTravelBookTaker(
 }
 
 {
-  "orgUnitName": "OVR Travels",
+"orgUnitName": "OVR Travels",
 "orgUnitEmail": "ovrtravels@gmail.com",
 "orgUnitMobile": "+918105555322",
 "orgUnitAddress": "Flat-201 Infinite Origin, Subh Enclave, Haralur Road, Bangalore 560106",
@@ -60,4 +60,19 @@ mutation getToken($userName: String!, $password: String!){
 {
   "userName": "vbReddy",
   "password": "Veera@123"
+}
+
+{
+  "userName": "VRLAdmin",
+  "password": "vrl@123"
+}
+
+query getTokenDetails($authToken: String!){
+  getTokenDetails(authToken: $authToken) {
+    id
+    token
+    mobile
+    iat
+    exp
+  }
 }

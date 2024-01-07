@@ -2,7 +2,7 @@ const { makeExecutableSchema } = require("@graphql-tools/schema");
 const authbaseController = require("./controller.js");
 
 module.exports = makeExecutableSchema({
-  typeDefs: /* GraphQL */ `
+  typeDefs: `
     type CodeValue {
       id: Int!
       name: String!
@@ -37,10 +37,14 @@ module.exports = makeExecutableSchema({
       id: Int
       token: String
       message: String
+      mobile: String
+      iat: Int 
+      exp: Int
     }
 
     type Query {
       getOrgUnitTypes: CodeValue!
+      getTokenDetails(authToken: String!): Token
     }
 
     type Mutation {
@@ -65,6 +69,9 @@ module.exports = makeExecutableSchema({
       getOrgUnitTypes() {
         return authbaseController.getOrgUnitTypes();
       },
+      getTokenDetails(_, payload) {
+        return authbaseController.getTokenDetails(payload)
+      }
     },
     Mutation: {
       getToken(_, payload) {

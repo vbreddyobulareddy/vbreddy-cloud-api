@@ -1,5 +1,5 @@
 const { buildOrgUnitPersonModal } = require("./_utils.js");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const secretKey = process.env.APP_SECRET;
 const daoService = require("./dao.js");
 
@@ -11,19 +11,36 @@ const getToken = async (payload) => {
     console.log("--=*-3-*=getToken ", record);
     const orgUnitPerson = buildOrgUnitPersonModal(record);
     console.log("--=*-4-*=getToken ", orgUnitPerson);
-    const token = jwt.sign({ id: orgUnitPerson.id, mobile: orgUnitPerson.person.mobile }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign(
+      { id: orgUnitPerson.id, mobile: orgUnitPerson.person.mobile },
+      secretKey,
+      { expiresIn: "1h" }
+    );
     console.log("--=*-5-*=getToken ", token);
     return {
       id: orgUnitPerson.id,
       token,
     };
-  } 
+  }
 
   return {
     id: null,
     token: null,
-    message: "Invalid UserName/Password"
-  }
+    message: "Invalid UserName/Password",
+  };
+};
+const getTokenDetails = async (payload) => {
+  console.log("--==getTokenDetails ", payload.authToken);
+  const { id, mobile, iat, exp } = jwt.verify(payload.authToken, secretKey);
+  console.log("--==decoded ", id, mobile, iat, exp);
+  // { id: 1, mobile: '+918105555322', iat: 1704637327, exp: 1704640927 }
+  return {
+    id,
+    token: payload.authToken,
+    mobile,
+    iat,
+    exp,
+  };
 };
 const getOrgUnitTypes = async () => {
   const [record] = await daoService.select.getCodeValueByCodeId({
@@ -55,6 +72,7 @@ const signUpTravelBookTaker = async (payload) => {
 };
 module.exports = {
   getToken,
+  getTokenDetails,
   getOrgUnitTypes,
   signUpTravelBookTaker,
 };
