@@ -40,6 +40,7 @@ module.exports = makeExecutableSchema({
       mobile: String
       iat: Int 
       exp: Int
+      orgUnitPerson: OrgUnitPerson
     }
 
     type Query {

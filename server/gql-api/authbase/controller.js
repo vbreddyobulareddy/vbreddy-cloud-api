@@ -34,12 +34,14 @@ const getTokenDetails = async (payload) => {
   const { id, mobile, iat, exp } = jwt.verify(payload.authToken, secretKey);
   console.log("--==decoded ", id, mobile, iat, exp);
   // { id: 1, mobile: '+918105555322', iat: 1704637327, exp: 1704640927 }
+  const [orgUnitPerson] = await daoService.select.getOrgUnitPersonById({ id });
   return {
     id,
     token: payload.authToken,
     mobile,
     iat,
     exp,
+    orgUnitPerson: buildOrgUnitPersonModal(orgUnitPerson),
   };
 };
 const getOrgUnitTypes = async () => {
