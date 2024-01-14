@@ -46,7 +46,7 @@ async function dropMyResumeViaGmailService(
         <p style="font-family: Verdana,Geneva,sans-serif">&ensp;&ensp;&ensp;I am a <strong>JavaScript Full-Stack Developer</strong>. 
         I have robust background in full stack development using Node.JS frameworks and Javascript UI libraries.
         I have a passion of creating efficient and scalable applications, and a proven track record of delivering high-quality code. <p/>
-        <p style="font-family: Verdana,Geneva,sans-serif">&ensp;&ensp;&ensp;During my 8+ years of experience in software development, I have honed my skills in both frontend and backend technologies. 
+        <p style="font-family: Verdana,Geneva,sans-serif">&ensp;&ensp;&ensp;During my 10 years of experience in software development, I have honed my skills in both frontend and backend technologies. 
         My proficiency in JavaScript, along with frameworks like React.JS, Redux and vue3, has allowed me to craft engaging and user-friendly 
         interfaces while ensuring seamless interactions. Additionally, I have a strong command of server-side technologies such as Express.js, 
         GraphQL, Next.JS and experience in working with databases like Google Cloud SQL, PostgreSQL.</p> 
