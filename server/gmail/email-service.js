@@ -57,7 +57,7 @@ async function dropMyResumeViaGmailService(
         Warm Regards, <br/>
         Veera Bhargava Reddy Obulareddy (VBReddy) <br />
         +1 404 448 1224 <br/>
-        vbreddy.obulareddy@gmail.com <br/>
+        vbreddy.obulareddy@outlook.com <br/>
         --- <br/>
         <strong>This is an auto generated email from <a href="https://vbreddy.life">vbreddy.life</a></strong>
         </p>
