@@ -10,7 +10,7 @@ const getDocResume = async () => {
   return new Promise((resolve, reject) => {
     const files = {};
     fs.readFile(
-      path.join(__dirname, "/vbreddy_9Y_Profile.docx"),
+      path.join(__dirname, "/vbreddy_Profile.docx"),
       { encoding: "base64" },
       function (err, data) {
         files.docx = data;
@@ -20,7 +20,7 @@ const getDocResume = async () => {
       }
     );
     fs.readFile(
-      path.join(__dirname, "/vbreddy_9Y_Profile.pdf"),
+      path.join(__dirname, "/vbreddy_Profile.pdf"),
       { encoding: "base64" },
       function (err, data) {
         files.pdf = data;
@@ -67,11 +67,11 @@ async function dropMyResumeViaGmailService(
         textEncoding: "base64",
         attachments: [
           {
-            filename: "vbreddy_9Y_Profile.docx",
+            filename: "vbreddy_10Y_Profile.docx",
             content: Buffer(response.docx, "base64"),
           },
           {
-            filename: "vbreddy_9Y_Profile.pdf",
+            filename: "vbreddy_10Y_Profile.pdf",
             content: Buffer(response.pdf, "base64"),
           },
         ],
