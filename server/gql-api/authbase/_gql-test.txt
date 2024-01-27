@@ -5,7 +5,7 @@ query {
   }
 }
 
-mutation signUpTravelBookTaker(
+mutation setOrgUnitPerson(
         $orgUnitName: String!,
         $orgUnitEmail: String!,
         $orgUnitMobile: String!,
@@ -18,7 +18,7 @@ mutation signUpTravelBookTaker(
         $primPersonPassword: String!,
         $primPersonAddress: String!
     ) {
-  signUpTravelBookTaker(
+  setOrgUnitPerson(
     orgUnitName: $orgUnitName,
     orgUnitEmail: $orgUnitEmail, 
     orgUnitMobile: $orgUnitMobile,

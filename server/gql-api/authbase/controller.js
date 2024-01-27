@@ -50,21 +50,21 @@ const getOrgUnitTypes = async () => {
   });
   return record;
 };
-const signUpTravelBookTaker = async (payload) => {
+const setOrgUnitPerson = async (payload) => {
   return new Promise(async (resolve) => {
-    console.log("--=*-1-*=signUpTravelBookTaker ", payload);
+    console.log("--=*-1-*=setOrgUnitPerson ", payload);
     const response = await Promise.all([
       daoService.orgUnit.insert(payload),
       daoService.person.insert(payload),
     ]);
-    console.log("--=*-2-*=signUpTravelBookTaker ", response);
+    console.log("--=*-2-*=setOrgUnitPerson ", response);
     const [orgUnit, person] = response;
     const orgUnitPersonEntity = await daoService.orgUnitPerson.insert({
       orgUnitId: orgUnit.insertId,
       personId: person.insertId,
       codeValueId: payload.orgUnitTypeId,
     });
-    console.log("--=*-3-*=signUpTravelBookTaker ", orgUnitPersonEntity);
+    console.log("--=*-3-*=setOrgUnitPerson ", orgUnitPersonEntity);
     const [orgUnitPerson] = await daoService.select.getOrgUnitPersonById({
       id: orgUnitPersonEntity.insertId,
     });
@@ -76,5 +76,5 @@ module.exports = {
   getToken,
   getTokenDetails,
   getOrgUnitTypes,
-  signUpTravelBookTaker,
+  setOrgUnitPerson,
 };

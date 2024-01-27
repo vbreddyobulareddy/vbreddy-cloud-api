@@ -50,7 +50,7 @@ module.exports = makeExecutableSchema({
 
     type Mutation {
       getToken(userName: String!, password: String!): Token!
-      signUpTravelBookTaker(
+      setOrgUnitPerson(
         orgUnitName: String!
         orgUnitEmail: String!
         orgUnitMobile: String!
@@ -78,8 +78,8 @@ module.exports = makeExecutableSchema({
       getToken(_, payload) {
         return authbaseController.getToken(payload);
       },
-      signUpTravelBookTaker(_, payload) {
-        return authbaseController.signUpTravelBookTaker(payload);
+      setOrgUnitPerson(_, payload) {
+        return authbaseController.setOrgUnitPerson(payload);
       },
     },
   },
