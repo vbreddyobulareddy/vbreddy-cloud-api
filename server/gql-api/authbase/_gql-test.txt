@@ -76,3 +76,36 @@ query getTokenDetails($authToken: String!){
     exp
   }
 }
+
+query checkDuplicateEmail($key: String!, $val: String!){
+  checkDuplicateEmail(key: $key, val: $val) {
+    count
+  }
+}
+
+{
+  "key": "OrgUnit",
+  "val": "fanda.mile@gmail.com"
+}
+
+query checkDuplicateMobile($key: String!, $val: String!){
+  checkDuplicateMobile(key: $key, val: $val) {
+    count
+  }
+}
+
+{
+  "key": "OrgUnit",
+  "val": "8106666344"
+}
+
+query checkDuplicateUserName($key: String!, $val: String!){
+  checkDuplicateUserName(key: $key, val: $val) {
+    count
+  }
+}
+
+{
+  "key": "Person",
+  "val": "VBReddy"
+}
