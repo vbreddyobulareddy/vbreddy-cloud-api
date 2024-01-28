@@ -146,10 +146,10 @@ module.exports = {
         `select * from CodeValue where codeId = ${payload.codeId}`
       );
     },
-    getRowsByTableAndColName: async (payload) => {
+    findRowsOfFieldValByTableAndFieldName: async (payload) => {
       const connection = await getConnection();
       const query = `select * from ${payload.tblName} where ${payload.colName} = '${payload.val}'`;
-      console.log('--=*-*-=> getRowsByTableAndColName ', query)
+      console.log('--=*-*-=> findRowsOfFieldValByTableAndFieldName ', query)
       return await connection.query(query);
     }
     //----

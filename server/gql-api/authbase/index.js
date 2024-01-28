@@ -43,16 +43,22 @@ module.exports = makeExecutableSchema({
       orgUnitPerson: OrgUnitPerson
     }
 
+    type duplicateType {
+      tableName: String
+      fieldName: String
+      fieldVal: String
+      fieldRef: String
+    }
+
     type DuplicateResult {
       count: Int
+      payload: duplicateType
     }
 
     type Query {
       getOrgUnitTypes: CodeValue!
       getTokenDetails(authToken: String!): Token
-      checkDuplicateEmail(key: String!, val: String!): DuplicateResult
-      checkDuplicateMobile(key: String!, val: String!): DuplicateResult
-      checkDuplicateUserName(key: String!, val: String!): DuplicateResult
+      checkDuplicates(tableName: String!, fieldName: String!, fieldVal: String!, fieldRef: String!): DuplicateResult
     }
 
     type Mutation {
@@ -80,14 +86,8 @@ module.exports = makeExecutableSchema({
       getTokenDetails(_, payload) {
         return authbaseController.getTokenDetails(payload);
       },
-      checkDuplicateEmail(_, payload) {
-        return authbaseController.checkDuplicateEmail(payload);
-      },
-      checkDuplicateMobile(_, payload) {
-        return authbaseController.checkDuplicateMobile(payload);
-      },
-      checkDuplicateUserName(_, payload) {
-        return authbaseController.checkDuplicateUserName(payload);
+      checkDuplicates(_, payload) {
+        return authbaseController.checkDuplicates(payload);
       },
     },
     Mutation: {

@@ -77,35 +77,19 @@ query getTokenDetails($authToken: String!){
   }
 }
 
-query checkDuplicateEmail($key: String!, $val: String!){
-  checkDuplicateEmail(key: $key, val: $val) {
+query checkDuplicates($tableName: String!, $fieldName: String!, $fieldVal: String!){
+  checkDuplicates(tableName: $tableName, fieldName: $fieldName, fieldVal: $fieldVal) {
     count
+    payload {
+      tableName
+      fieldName
+      fieldVal
+    }
   }
 }
 
 {
-  "key": "OrgUnit",
-  "val": "fanda.mile@gmail.com"
-}
-
-query checkDuplicateMobile($key: String!, $val: String!){
-  checkDuplicateMobile(key: $key, val: $val) {
-    count
-  }
-}
-
-{
-  "key": "OrgUnit",
-  "val": "8106666344"
-}
-
-query checkDuplicateUserName($key: String!, $val: String!){
-  checkDuplicateUserName(key: $key, val: $val) {
-    count
-  }
-}
-
-{
-  "key": "Person",
-  "val": "VBReddy"
+  "tableName": "Person",
+  "fieldName": "userName",
+  "fieldVal": "VBReddy"
 }

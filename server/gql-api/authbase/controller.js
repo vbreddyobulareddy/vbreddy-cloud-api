@@ -73,34 +73,15 @@ const setOrgUnitPerson = async (payload) => {
   });
 };
 
-const checkDuplicateEmail = async (payload) => {
-  const rows = await daoService.select.getRowsByTableAndColName({
-    tblName: payload.key,
-    colName: "email",
-    val: payload.val,
+const checkDuplicates = async (payload) => {
+  const rows = await daoService.select.findRowsOfFieldValByTableAndFieldName({
+    tblName: payload.tableName,
+    colName: payload.fieldName,
+    val: payload.fieldVal,
   });
   return {
     count: rows.length > 0,
-  };
-};
-const checkDuplicateMobile = async (payload) => {
-  const rows = await daoService.select.getRowsByTableAndColName({
-    tblName: payload.key,
-    colName: "mobile",
-    val: payload.val,
-  });
-  return {
-    count: rows.length > 0,
-  };
-};
-const checkDuplicateUserName = async (payload) => {
-  const rows = await daoService.select.getRowsByTableAndColName({
-    tblName: payload.key,
-    colName: "userName",
-    val: payload.val,
-  });
-  return {
-    count: rows.length > 0,
+    payload,
   };
 };
 
@@ -109,7 +90,5 @@ module.exports = {
   getTokenDetails,
   getOrgUnitTypes,
   setOrgUnitPerson,
-  checkDuplicateEmail,
-  checkDuplicateMobile,
-  checkDuplicateUserName,
+  checkDuplicates,
 };
